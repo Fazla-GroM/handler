@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  db:
+    image: ${DB_IMAGE}
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - '5432:${DB_PORT}'
+volumes:
+  db: null
