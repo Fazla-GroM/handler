@@ -28,7 +28,7 @@ async function bootstrap() {
         .setVersion('1.0')
         .build()
     const document = SwaggerModule.createDocument(app, documentConfig)
-    SwaggerModule.setup('api/docs', app, document)
+    SwaggerModule.setup(`${apiConfiguration.prefix}/${apiConfiguration.docsPrefix}`, app, document)
 
     await app.listen(apiConfiguration.port)
     Logger.log(`🚀 Application is running on: http://localhost:${apiConfiguration.port}/${apiConfiguration.prefix}`)
