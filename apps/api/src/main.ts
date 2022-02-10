@@ -3,6 +3,7 @@
  * This is only a minimal backend to get started.
  */
 
+import helmet from 'helmet'
 import { Logger, ValidationPipe } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
@@ -15,6 +16,7 @@ async function bootstrap() {
     const configService = app.get(ConfigService)
     const apiConfiguration = configService.get<TApiConfig>(ERegisteredConfigs.api)
     app.setGlobalPrefix(apiConfiguration.prefix)
+    app.use(helmet())
     app.enableCors()
     app.useGlobalPipes(
         new ValidationPipe({
